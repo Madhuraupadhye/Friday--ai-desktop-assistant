@@ -1,4 +1,4 @@
-import pyttsx3
+import pyttsx3    #voice module
 import speech_recognition as sr 
 import datetime
 import wikipedia
@@ -11,7 +11,8 @@ import sys
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
-engine.setProperty('voice',voices[1].id) 
+engine.setProperty('voice',voices[1].id)
+# print(voices[0].id) for male voice 
 
 
 def speak(audio):
@@ -32,6 +33,7 @@ def wishMe():
     speak("this is Friday at your service.")
 
 def takeCommand():
+    #It takes microphone input from the user and returns string output
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
@@ -65,7 +67,7 @@ if __name__ == "__main__":
     while True:
         query = takeCommand().lower()
 
-
+        # Logic for executing tasks based on query
         if 'wikipedia'in query:
             speak('Searching Wikipedia....Please Wait')
             query = query.replace("wikipedia","")
@@ -160,5 +162,5 @@ if __name__ == "__main__":
             speak ("i hope i was helpful,thanks for using me, have a great day!")
             sys.exit()
         
-        
+        #for another task to commense
         speak("what else can i do for you")
